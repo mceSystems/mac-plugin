@@ -22,6 +22,10 @@ import hudson.slaves.JNLPLauncher
 import hudson.slaves.SlaveComputer
 import jenkins.model.Jenkins
 
+/**
+ * Connector to launch Mac agent with JNLP
+ * @author Mathieu Delrocq
+ */
 class MacComputerJNLPConnector extends MacComputerConnector {
 
     private String jenkinsUrl
@@ -91,7 +95,7 @@ class MacComputerJNLPConnector extends MacComputerConnector {
             }catch(Exception e) {
                 launched = false
                 String message = String.format("Error while connecting computer %s due to error %s ",
-                    computer.name, ExceptionUtils.getStackTrace(e))
+                        computer.name, ExceptionUtils.getStackTrace(e))
                 listener.error(message)
                 throw new InterruptedException(message)
             }
