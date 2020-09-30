@@ -73,6 +73,7 @@ public class MacComputerSSHConnector extends MacComputerConnector {
     @Override
     protected ComputerLauncher createLauncher(MacHost host, MacUser user) throws IOException, InterruptedException {
         SshHostKeyVerificationStrategy sshHostKeyVerificationStrategy = new ManuallyProvidedKeyVerificationStrategy(host.macHostKeyVerifier.getKey())
+        return new MacSSHLauncher(host, user, this.jvmOptions, this.javaPath, this.prefixStartSlaveCmd, this.suffixStartSlaveCmd, sshHostKeyVerificationStrategy)
     }
 
 
