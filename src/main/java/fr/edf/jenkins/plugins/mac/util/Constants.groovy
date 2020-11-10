@@ -34,6 +34,9 @@ class Constants {
     /** "sudo sysadminctl -addUser %s -password %s" */
     public static final String CREATE_USER = "sudo sysadminctl -addUser %s -password %s"
 
+    /** "sudo sysadminctl -addUser %s -password %s -admin" */
+    public static final String CREATE_ADMIN_USER = CREATE_USER + " -admin"
+
     /** "sudo sysadminctl -deleteUser %s" */
     public static final String DELETE_USER = "sudo sysadminctl -deleteUser %s"
 
@@ -51,7 +54,7 @@ class Constants {
 
     /** dscl . list /Users | grep -v ^_ | grep %s */
     public static final String LIST_USERS = "dscl . list /Users | grep -v ^_ | grep %s"
-    
+
     /** mkdir %s */
     public static final String CREATE_DIR = "mkdir %s"
 
