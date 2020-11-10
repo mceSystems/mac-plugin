@@ -51,7 +51,11 @@ class SSHCommand {
             SSHGlobalConnectionConfiguration connectionConfig = new SSHGlobalConnectionConfiguration(credentialsId: macHost.credentialsId, port: macHost.port,
             context: Jenkins.get(), host: macHost.host, connectionTimeout: macHost.connectionTimeout,
             readTimeout: macHost.readTimeout, kexTimeout: macHost.kexTimeout, macHostKeyVerifier: macHost.macHostKeyVerifier)
-            LOGGER.log(Level.FINE, SSHCommandLauncher.executeCommand(connectionConfig, true, String.format(Constants.CREATE_USER, user.username, user.password.getPlainText())))
+            if(macHost.adminUsers?.booleanValue()) {
+                LOGGER.log(Level.FINE, SSHCommandLauncher.executeCommand(connectionConfig, true, String.format(Constants.CREATE_ADMIN_USER, user.username, user.password.getPlainText())))
+            }else {
+                LOGGER.log(Level.FINE, SSHCommandLauncher.executeCommand(connectionConfig, true, String.format(Constants.CREATE_USER, user.username, user.password.getPlainText())))
+            }
             TimeUnit.SECONDS.sleep(5)
             if(!isUserExist(connectionConfig, user.username)) {
                 throw new Exception(String.format("The user %s wasn't created after verification", user.username))

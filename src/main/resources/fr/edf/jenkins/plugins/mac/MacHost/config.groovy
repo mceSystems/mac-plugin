@@ -52,6 +52,10 @@ f.advanced(title:Messages.Host_Details()) {
         f.number(clazz: 'required', default: 15, min: 15)
     }
 
+    f.entry(title: Messages.Host_AdminUsers(), field:'adminUsers') {
+        f.checkbox()
+    }
+
     f.block() {
         f.validateButton(
                 title: _(Messages.Host_TestConnection()),

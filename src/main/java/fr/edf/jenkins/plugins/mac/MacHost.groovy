@@ -37,6 +37,7 @@ class MacHost implements Describable<MacHost> {
     Integer agentConnectionTimeout
     Integer maxTries
     Boolean disabled
+    Boolean adminUsers = Boolean.FALSE
     Boolean uploadKeychain = Boolean.FALSE
     String labelString
     String fileCredentialsId
@@ -46,7 +47,7 @@ class MacHost implements Describable<MacHost> {
 
     @DataBoundConstructor
     MacHost(String host, String credentialsId, Integer port, Integer maxUsers, Integer connectionTimeout, Integer readTimeout, Integer agentConnectionTimeout,
-    Boolean disabled, Integer maxTries, String labelString, Boolean uploadKeychain, String fileCredentialsId, List<MacEnvVar> envVars, String key) {
+    Boolean disabled, Integer maxTries, String labelString, Boolean uploadKeychain, String fileCredentialsId, List<MacEnvVar> envVars, String key, Boolean adminUsers) {
         this.host = host
         this.credentialsId = credentialsId
         this.port = port
@@ -60,11 +61,12 @@ class MacHost implements Describable<MacHost> {
         this.labelString = labelString
         this.envVars = envVars
         this.uploadKeychain = uploadKeychain ?: Boolean.FALSE
+        this.adminUsers = adminUsers ?: Boolean.FALSE
         this.fileCredentialsId = fileCredentialsId
         this.macHostKeyVerifier = new MacHostKeyVerifier(key)
         labelSet = Label.parse(StringUtils.defaultIfEmpty(labelString, ""))
     }
-    
+
     String getKey() {
         null != this.macHostKeyVerifier ? macHostKeyVerifier.getKey() : ""
     }
@@ -130,8 +132,13 @@ class MacHost implements Describable<MacHost> {
     }
 
     @DataBoundSetter
-    void setUploadKeychain(Boolean uploadKeychain= Boolean.FALSE) {
+    void setUploadKeychain(Boolean uploadKeychain = Boolean.FALSE) {
         this.uploadKeychain = uploadKeychain
+    }
+
+    @DataBoundSetter
+    void setAdminUsers(Boolean adminUsers = Boolean.FALSE) {
+        this.adminUsers = adminUsers
     }
 
     @DataBoundSetter
@@ -216,7 +223,7 @@ class MacHost implements Describable<MacHost> {
                 @QueryParameter String credentialsId, @QueryParameter String key, @AncestorInPath Item context) {
             return FormUtils.verifyConnection(host, port, credentialsId, key, context)
         }
-        
+
         /**
          * Check the validity of the given key
          * @param key
