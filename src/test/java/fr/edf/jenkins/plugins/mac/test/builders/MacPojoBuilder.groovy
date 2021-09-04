@@ -40,7 +40,7 @@ class MacPojoBuilder {
     }
 
     static MacComputerConnector buildConnector(JenkinsRule jenkinsRule) {
-        return new MacComputerJNLPConnector(jenkinsRule.getURL().toString())
+        return new MacComputerJNLPConnector(Boolean.FALSE, jenkinsRule.getURL().toString())
     }
 
     static MacUser buildUser() {

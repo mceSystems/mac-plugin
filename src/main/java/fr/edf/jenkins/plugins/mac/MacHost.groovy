@@ -172,14 +172,15 @@ class MacHost implements Describable<MacHost> {
      * @return An array of command
      */
     private List<String> buildPreLaunchCommands(String preLaunchCommandsString) {
-        if(preLaunchCommandsString == null || preLaunchCommandsString.trim().isEmpty()) {
-            return new ArrayList<String>()
-        }
-        String[] cmdArray = preLaunchCommandsString.split("\\r?\\n|\\r")
         List<String> preLaunchCommandList = new ArrayList<>()
-        for(int i=0;i<cmdArray.length;i++) {
-            if (!cmdArray[i].trim().isEmpty()) {
-                preLaunchCommandList.add(cmdArray[i])
+        if(preLaunchCommandsString?.trim()) {
+            String[] cmdArray = preLaunchCommandsString.split("\\r?\\n|\\r")
+            String cmd = null
+            for(int i=0;i<cmdArray.length;i++) {
+                cmd = cmdArray[i]
+                if (cmd?.trim()) {
+                    preLaunchCommandList.add(cmd)
+                }
             }
         }
         return preLaunchCommandList;
@@ -250,7 +251,7 @@ class MacHost implements Describable<MacHost> {
         }
 
         /**
-         * Verify the connection to the Mac machine 
+         * Verify the connection to the Mac machine
          * @param host
          * @param port
          * @param credentialsId
