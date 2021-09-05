@@ -37,6 +37,9 @@ class Constants {
     /** "sudo sysadminctl -deleteUser [username]" */
     public static final String DELETE_USER = "sudo sysadminctl -deleteUser %s"
 
+    /** "sudo rm -rf /Users/[username]" */
+    public static final String REMOVE_USER_HOME_FOLDER = "sudo rm -rf /Users/%s"
+
     /** chmod -R u=rwx,g=rx,o=r /Users/[username]/ */
     public static final String CHANGE_RIGHTS_ON_USER = "sudo chmod -R 700 /Users/%s/"
 
@@ -65,8 +68,9 @@ class Constants {
     /** /Users/[username]/Library/Keychains/ */
     public static final String KEYCHAIN_DESTINATION_FOLDER = "/Users/%s/Library/Keychains/"
 
-	/** /Users/%s/ */
+    /** /Users/%s/ */
     public static final String HOST_FILE_DESTINATION_BASE_FOLDER = "/Users/%s/"
+
     /** sudo pkill -u [username] */
     public static final String STOP_USER_PROCESS = "sudo pkill -u %s"
 
