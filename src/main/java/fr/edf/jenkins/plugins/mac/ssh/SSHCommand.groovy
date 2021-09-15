@@ -109,10 +109,15 @@ class SSHCommand {
             SSHGlobalConnectionConfiguration connectionConfig = new SSHGlobalConnectionConfiguration(credentialsId: macHost.credentialsId, port: macHost.port,
             context: Jenkins.get(), host: macHost.host, connectionTimeout: macHost.connectionTimeout,
             readTimeout: macHost.readTimeout, kexTimeout: macHost.kexTimeout, macHostKeyVerifier: macHost.macHostKeyVerifier)
+
             stopUserProcess(username, connectionConfig)
+
+            LOGGER.log(Level.FINE, SSHCommandLauncher.executeCommand(connectionConfig, true, String.format(Constants.DELETE_USER, username)))
+            TimeUnit.SECONDS.sleep(5)
+
             LOGGER.log(Level.FINE, SSHCommandLauncher.executeCommand(connectionConfig, true, String.format(Constants.REMOVE_USER_HOME_FOLDER, username)))
             TimeUnit.SECONDS.sleep(macHost.userDeleteTimeout)
-            LOGGER.log(Level.FINE, SSHCommandLauncher.executeCommand(connectionConfig, true, String.format(Constants.DELETE_USER, username)))
+
             if(isUserExist(connectionConfig, username)) {
                 throw new Exception(String.format("The user %s still exist after verification", username))
             }

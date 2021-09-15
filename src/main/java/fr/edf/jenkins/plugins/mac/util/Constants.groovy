@@ -34,8 +34,8 @@ class Constants {
     /** "sudo sysadminctl -addUser [username] -password [password]" */
     public static final String CREATE_USER = "sudo sysadminctl -addUser %s -password %s"
 
-    /** "sudo sysadminctl -deleteUser [username]" */
-    public static final String DELETE_USER = "sudo sysadminctl -deleteUser %s"
+    /** "sudo dscl . delete /Users/[username]" */
+    public static final String DELETE_USER = "sudo dscl . delete /Users/%s"
 
     /** "sudo rm -rf /Users/[username]" */
     public static final String REMOVE_USER_HOME_FOLDER = "sudo rm -rf /Users/%s"
