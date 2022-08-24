@@ -64,10 +64,6 @@ f.advanced(title:Messages.Host_Details()) {
         }
     }
 
-    f.entry(title: _(Messages.Host_UserDeleteTimeout()), field: 'userDeleteTimeout') {
-        f.number(clazz: 'required', default: 15, min: 5)
-    }
-
     f.block() {
         f.validateButton(
                 title: _(Messages.Host_TestConnection()),
