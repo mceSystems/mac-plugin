@@ -89,21 +89,6 @@ class SSHCommand {
         }
     }
 
-
-    /**
-     * Stop all processes running with the given user
-     * @param username
-     * @param macHost
-     */
-    @Restricted(NoExternalUse)
-    private static void stopUserProcess(String username, SSHGlobalConnectionConfiguration connectionConfig) {
-        try {
-            LOGGER.log(Level.FINE, SSHCommandLauncher.executeCommand(connectionConfig, false, String.format(Constants.STOP_USER_PROCESS, username)))
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, "Unable to kill all processes of the user " + username, e)
-        }
-    }
-
     /**
      * Delete the given user in parameter
      * @param username
@@ -126,8 +111,6 @@ class SSHCommand {
             }
 
             TimeUnit.SECONDS.sleep(5)
-
-            LOGGER.log(Level.FINE, SSHCommandLauncher.executeCommand(connectionConfig, true, String.format(Constants.REMOVE_USER_HOME_FOLDER, username)))
 
             if(isUserExist(connectionConfig, username)) {
                 throw new Exception(String.format("The user %s still exist after verification", username))
@@ -213,7 +196,7 @@ class SSHCommand {
             SSHCommandLauncher.sendFile(connectionConfig, hostFile.content, hostFile.fileName, outputDir)
             return true
         } catch(Exception e) {
-            final String message = String.format(SSHCommandException.TRANSFERT_HOST_FILE_ERROR_MESSAGE, host.host, e.getMessage())
+            final String message = String.format(SSHCommandException.TRANSFER_HOST_FILE_ERROR_MESSAGE, host.host, e.getMessage())
             LOGGER.log(Level.SEVERE, message, e)
             throw new SSHCommandException(message, e)
         }

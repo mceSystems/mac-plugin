@@ -101,7 +101,7 @@ class Constants {
     public static final String GET_REMOTING_JAR = "curl --retry 5 --retry-delay 10 --verbose %s > remoting.jar"
 
     /** java [agent_jvm_parameters] -classpath remoting.jar hudson.remoting.jnlp.Main -headless -url %s %s %s */
-	public static final String LAUNCH_JNLP = "java %s -classpath remoting.jar hudson.remoting.jnlp.Main -headless -url %s %s %s"
+    public static final String LAUNCH_JNLP = "java %s -classpath remoting.jar hudson.remoting.jnlp.Main -headless -url %s %s %s"
 
     /** dscl . list /Users | grep -v ^_ | grep [username] */
     public static final String CHECK_USER_EXIST = "dscl . list /Users | grep -v ^_ | grep %s"
@@ -124,9 +124,6 @@ class Constants {
 
     /** /Users/%s/ */
     public static final String HOST_FILE_DESTINATION_BASE_FOLDER = "/Users/%s/"
-
-    /** sudo pkill -u [username] */
-    public static final String STOP_USER_PROCESS = "sudo pkill -u %s"
 
     //     Command for grouping users on a mac (not used but keep for potential evol)
     //    /** sudo dseditgroup -o create %s */

@@ -146,7 +146,6 @@ class SSHCommandTest extends Specification {
         MacHost macHost = Mock(MacHost)
         GroovySpy(SSHCommandLauncher, global:true)
         1 * SSHCommandLauncher.executeCommand(_, true, String.format(Constants.DELETE_USER, username)) >> "OK"
-        1 * SSHCommandLauncher.executeCommand(_, true, String.format(Constants.REMOVE_USER_HOME_FOLDER, username)) >> "OK"
         1 * SSHCommandLauncher.executeCommand(_, true, String.format(Constants.CHECK_USER_EXIST, username)) >> username
 
         when:
