@@ -10,6 +10,7 @@ import fr.edf.jenkins.plugins.mac.connector.MacComputerConnector
 import fr.edf.jenkins.plugins.mac.connector.MacComputerJNLPConnector
 import fr.edf.jenkins.plugins.mac.slave.MacSlave
 import fr.edf.jenkins.plugins.mac.ssh.key.verifiers.MacHostKeyVerifier
+import fr.edf.jenkins.plugins.mac.util.Constants
 import hudson.util.Secret
 
 class MacPojoBuilder {
@@ -31,8 +32,9 @@ class MacPojoBuilder {
                 buildEnvVars(), //envVars
                 "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUpwmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ51s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZw==", //macHostKeyVerifier
                 "ls \n pwd \n whoami", //preLaunchCommands
-                [], // host files
-                15 // userDeleteTimeout
+                Constants.SYSADMINCTL, //userManagementTool
+                "-Xms64m -Xmx128m", //agentJvmParameters
+                [] // host files
                 )
         List<MacHost> hostList = new ArrayList()
         hostList.add(host)

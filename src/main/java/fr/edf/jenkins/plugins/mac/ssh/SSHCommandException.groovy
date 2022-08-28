@@ -23,7 +23,7 @@ class SSHCommandException extends Exception {
     public static final String TRANSFER_KEYCHAIN_ERROR_MESSAGE = "Cannot transfer keychain file on mac %s : %s"
 
     /** Cannot transfer host file %s on mac %s */
-    public static final String TRANSFERT_HOST_FILE_ERROR_MESSAGE = "Cannot transfer hostFile file on mac %s : %s"
+    public static final String TRANSFER_HOST_FILE_ERROR_MESSAGE = "Cannot transfer hostFile file on mac %s : %s"
 
     /** An error occred when running entry point command %s on the mac %s */
     public static final String PRELAUNCHCOMMAND_ERROR_MESSAGE = "An error occred when running pre-launch command %s on the mac %s with the user %s"

@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v1.5.1] - 17/08/2022
+
+### Changed
+* Use Eclipse Temurin, not AdoptOpenJDK in action
+* Chore: use jenkins infra maven cd reusable workflow
+* Upgrade parent version to 4.46
+
+### Fixed
+* Compatibility with Jenkins 2.320 or higher
+
+## [v1.5.0] - 08/03/2022
+
+### Added
+* Agent JVM argument : Allow to set agent JVM argument in Mac Host advanced properties. Default values is "-Xms64m -Xmx128m".
+
+### Changed
+* Upgrade parent version to 4.37
+
+## [v1.4.0] - 30/11/2021
+
+### Added
+* User management tool : possibility to choose between "dscl" and "sysadminctl" for user creation and deletion.
+This functionality fix [JENKINS-66374](https://issues.jenkins.io/browse/JENKINS-66374)
+* Troubleshooting section in README
+
 ## [v1.3.1] - 06/08/2021
 
 ### Added
